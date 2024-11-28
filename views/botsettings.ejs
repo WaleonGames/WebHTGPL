@@ -1,0 +1,33 @@
+<!-- guild-editor.ejs -->
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <title>Edytor serwera - <%= guild.name %></title>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-header">
+      <h1>Edytujesz serwer: <%= guild.name %></h1>
+      <img class="avatar" src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>.png" alt="Avatar" loading="lazy">
+    </div>
+    <div class="profile-info">
+      <h2>Edytuj ustawienia serwera</h2>
+      <form action="/save-guild-settings" method="POST">
+        <input type="hidden" name="guildId" value="<%= guild.id %>">
+        <label for="guildName">Nazwa serwera:</label>
+        <input type="text" id="guildName" name="guildName" value="<%= guild.name %>" required>
+        
+        <!-- Dodaj inne pola formularza, np. zmiana opisu serwera -->
+        
+        <button type="submit">Zapisz zmiany</button>
+      </form>
+
+      <!-- Przycisk do dołączenia do serwera -->
+      <a href="https://discord.com/channels/<%= guild.id %>" class="button">Dołącz do serwera</a>
+    </div>
+  </div>
+</body>
+</html>

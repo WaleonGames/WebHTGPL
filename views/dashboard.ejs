@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <title>Dashboard</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.0/gsap.min.js" async></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js" async></script>  
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-header">
+      <h1>Witaj, <%= username %>#<%= discriminator %>!</h1>
+      <img class="avatar" src="https://cdn.discordapp.com/avatars/<%= discordId %>/<%= avatar %>.png" alt="Avatar" loading="lazy">
+    </div>
+    
+    <div class="profile-info">
+      <h2 class="servers-header">Twoje serwery</h2>
+      <div class="server-list">
+        <% if (guilds.length > 0) { %>
+          <% guilds.forEach(function(guild) { %>
+            <div class="server-tile">
+              <img src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>.png" alt="<%= guild.name %>" class="server-icon">
+              <h3><%= guild.name %></h3>
+              <div class="button-group">
+                <a href="/guild-editor/<%= guild.id %>" class="btn">Edytor</a>
+                <a href="https://discord.com/channels/<%= guild.id %>" class="btn join-btn">Dołącz</a>
+              </div>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <p>Nie masz uprawnień administratora na żadnym serwerze.</p>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
